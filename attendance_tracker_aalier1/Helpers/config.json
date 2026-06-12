@@ -2,9 +2,9 @@
 %s\n
   "thresholds": {
 %s\n
-    "warning": 75,
+    "warning": 80,
 %s\n
-    "failure": 50
+    "failure": 60
 %s\n
   },
 %s\n
