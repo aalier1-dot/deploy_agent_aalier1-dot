@@ -20,6 +20,7 @@ PROJECT_DIR="attendance_tracker_${USER_INPUT}"
 
 [ -d "$PROJECT_DIR" ] && rm -rf "$PROJECT_DIR"
 mkdir -p "$PROJECT_DIR/Helpers" "$PROJECT_DIR/reports"
+sleep 2
 touch $PROJECT_DIR/Helpers/assets.csv $PROJECT_DIR/Helpers/config.json $PROJECT_DIR/reports/reports.log $PROJECT_DIR/attendance_checker.py
 #adding the contents in the files we have created
 
@@ -67,11 +68,12 @@ if __name__ == "__main__":
 	run_attendance_check()
 PYEOF
 cat > "$PROJECT_DIR/Helpers/assets.csv" << 'CSVEOF'
-Email Names Attendance Count Absence Count
-alice@example.com Alice Johnson 14 1
-bob@example.com Bob Smith 7 8
-charlie@example.com Charlie Davis 4 11
-diana@example.com Diana Prince 15 0
+
+Email                  Names                Attendance Count       Absence Count
+alice@example.com      Alice Johnson            14                     1
+bob@example.com        Bob Smith                 7                     8
+charlie@example.com    Charlie Davis             4                     11
+diana@example.com      Diana Prince             15                     0
 CSVEOF
 
  cat > "$PROJECT_DIR/Helpers/config.json" << 'JSONEOF'
@@ -115,4 +117,3 @@ if command -v python3 &>/dev/null; then
 else
     echo "Python3 NOT found"
 fi
-
