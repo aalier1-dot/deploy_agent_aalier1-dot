@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-trap_handler() {
+trap_handler(){
     echo "[!] Archiving..."
-    if [ -d :PROJECT_DIR" ]; then
+    if [ -d "$PROJECT_DIR" ]; then
         tar -czf "${PROJECT_DIR}_archive" "$PROJECT_DIR" 2>/dev/null
         echo "[OK] Archive created"
         rm -rf "$PROJECT_DIR"
@@ -95,22 +95,24 @@ LOGEOF
 echo "[OK] Files copied."
 read -p "Update thresholds? yes or no:" UPDATE_CONFIG
 
-if [ "$UPDATE_CONFIG" = "yes" ]; then
-    echo "Warning % '(default 75)':"
+if [ "$UPDATE_CONFIG" = "yes" ]
+     then
+	echo "update a warning treshold:"
     read Warning
     [ -z "$Warning" ] && Warning=75
-    echo "Failure % '(default 50)':"
+    echo "Update the treshold for failure:"
     read Failure
     [ -z "$Failure" ] && Failure=50
-    sed -i "s/\"warning\": 75/\"warning\": $Warning/" "$PROJECT_DIR/Helpers/config.json"
-    sed -i "s/\"failure\": 50/\"failure\": $Failure/" "$PROJECT_DIR/Helpers/config.json"
+    sed -i "s/\"warning\": 75/\"warning\": $Warning/" $PROJECT_DIR/Helpers/config.json
+    sed -i "s/\"failure\": 50/\"failure\": $Failure/" $PROJECT_DIR/Helpers/config.json
+  else 
+	 echo "warning and failure are still default 75% and 50% respectively"
 fi
 
 if command -v python3 &>/dev/null; then
-    echo "[OK] Python3 installed."
+    echo "Python3 installed"
     python3 --version
 else
-    echo "[!] Python3 NOT found."
+    echo "Python3 NOT found"
 fi
 
-echo "Setup complete. Project at: $PROJECT_DIR"
